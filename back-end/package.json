@@ -1,0 +1,25 @@
+{
+  "name": "back-end",
+  "version": "1.0.0",
+  "description": "activity for mobile development III, node.js with sqlite",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node.js",
+    "mongodb",
+    "express.js"
+  ],
+  "devDependencies": {
+    "node": "^10.1.0",
+    "nodemon": "^1.19.3"
+  },
+  "author": "Pedro",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongodb": "~3.3.5"
+  }
+}

@@ -1,0 +1,42 @@
+body{
+  background-color: #c2c2c2;
+}
+
+.content {
+  width: 70%;
+  margin: auto;
+  padding: 10px;
+  background-color: #fff;
+}
+
+.dimmer {
+  width: 100%;
+  height: calc(100vh);
+  position: fixed;
+  right: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  z-index: 200;
+}
+
+.sidebar {
+  width: 50%;
+  height: calc(100vh);
+  position: fixed;
+  right: 0;
+  top: 0;
+  background: #ffffff;
+  display: none;
+  z-index: 210;
+}
+
+.tab-content {
+  padding: 15px;
+  border: 1px solid;
+  border-color: #dee2e6 #dee2e6 #fff;
+}
+
+fieldset legend{
+  font-size: 1rem!important;
+}
