@@ -1,6 +1,6 @@
 var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://localhost:27017"; //TODO: change this for the mongodb server url
-var database = "exam3_C0740134";
+var database = "exam3_C0740134";//TODO: change this 
 var ObjectID = require('mongodb').ObjectID;
 
 class DataBase {
