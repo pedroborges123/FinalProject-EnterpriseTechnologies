@@ -1,7 +1,7 @@
 {
   "name": "back-end",
   "version": "1.0.0",
-  "description": "activity for mobile development III, node.js with sqlite",
+  "description": "activity for Enterprise Technologies, node.js with express, cors, mongodb",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
