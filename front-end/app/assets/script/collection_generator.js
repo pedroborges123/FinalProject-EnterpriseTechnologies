@@ -1,5 +1,5 @@
 'use restrict'
-const url_server = "http://localhost:3000/api/";
+const url_server = "http://localhost:3000/api/";// change this..
 
 class CollectionField {
 
@@ -90,7 +90,7 @@ class CollectionGenerator {
     */
     constructor(collection_name, collection_fields) {
         this.name = collection_name;
-        this.url_base = url_server + collection_name;
+        this.url_base = url_server;
         this.fields = collection_fields;
         this.list = [];
         this.set_up_html();
@@ -357,12 +357,15 @@ class CollectionGenerator {
 
     ajax_call(url, data = undefined, method, target, callback) {
 
+        let collection = this.name;
+
         jQuery.ajax({
             url: url,
             type: method,
             contentType: 'application/json',
             data: JSON.stringify(data),
-            beforeSend: function () {
+            beforeSend: function (jqXHR, settings) {
+                jqXHR.setRequestHeader('collection_name', collection );
                 jQuery(target).append('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>');
             },
             success: function (result, status, xhr) {

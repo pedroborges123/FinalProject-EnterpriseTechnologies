@@ -14,13 +14,15 @@ class Server {
 
     init() {
 
-        var student_collection = "Cestar_C0740134";
-        //TODO: add a new collection here as a variable
         app.use(cors());
 
-        app.route('/api/student/:id?').post(function (req, res) {
+        app.route('/api/:id?').post(function (req, res) {
             var body = '';
-            let db = new Database(student_collection);
+            let collection = req.headers.collection_name;
+            console.log(req);
+            console.log(collection);
+
+            let db = new Database(collection);
             req.on('data', function (data) {
                 body += data
                 console.log('Partial body: ' + body);
@@ -34,15 +36,18 @@ class Server {
 
             });
         }).get(function (req, res) {
+            let collection = req.headers.collection_name;
+            //console.log(collection);
+            //console.log(req.headers);
+            let db = new Database(collection);
 
-            let db = new Database(student_collection);
             console.log(req.params.id);
             if (req.params.id != undefined) {
 
                 db.list({ '_id': req.params.id }, (result) => {
-                    if(result.length > 0){
+                    if (result.length > 0) {
                         res.json({ result: result });
-                    }else{
+                    } else {
                         res.status(404).json("ID NOT FOUND");
                     }
                 });
@@ -54,7 +59,10 @@ class Server {
             }
         }).put(function (req, res) {
             var body = '';
-            let db = new Database(student_collection);
+            let collection = req.headers.collection_name;
+            console.log(collection);
+
+            let db = new Database(collection);
             req.on('data', function (data) {
                 body += data
                 console.log('Partial body: ' + body);
@@ -66,9 +74,12 @@ class Server {
                 });
             });
         }).delete(function (req, res) {
-            let db = new Database(student_collection);
+            let collection = req.headers.collection_name;
+            console.log(collection);
+
+            let db = new Database(collection);
             console.log(req.params.id);
-            if (req.params.id != undefined && req.params.id.length == 24 ) {
+            if (req.params.id != undefined && req.params.id.length == 24) {
 
                 db.delete_document_by_id(req.params.id, (result) => {
                     res.json({ result: result });
