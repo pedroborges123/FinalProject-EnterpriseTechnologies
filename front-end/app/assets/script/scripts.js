@@ -34,6 +34,15 @@ function build_ui() {
     student_collection_generator.set_up_modal();// Only for the first on collection
     student_collection_generator.load_table();// Only for the first on collection
 
+    let cool_collection_fields = [
+        new CollectionField('ID', '_id', 'text', false, 'disabled="disabled"'),
+        new CollectionField('Name', 'Name', 'text', true),
+        new CollectionField('Last Name', 'LastName', 'text', true),
+        new CollectionField('Rating', 'rating', 'number', true)];
+
+    let cool_collection_generator = new CollectionGenerator('Cool_List', cool_collection_fields);
+    cool_collection_generator.handle_ui();// For all collections
+
 }
 
 

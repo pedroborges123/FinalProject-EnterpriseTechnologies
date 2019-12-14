@@ -1,4 +1,5 @@
 'use restrict'
+
 const url_server = "http://localhost:3000/api/";// change this..
 
 class CollectionField {
@@ -76,7 +77,7 @@ class CollectionField {
                             <label class="form-check-label" for="input-${_self.key}">${el.name}</label>
                         </div>`;
         });
-        content+= '</fieldset>';
+        content += '</fieldset>';
         return content;
     }
 
@@ -171,10 +172,17 @@ class CollectionGenerator {
             let _self = this;
             this.list.forEach(row => {
                 content += '<tr>';
-                
-                _self.fields.forEach(el => {
 
-                    content += `<td>${row[el.key]}</td>`;
+                _self.fields.forEach(el => {
+                    if (_self.isObject(row[el.key])) {
+                        content += `<td>${_self.build_row_content_object(row[el.key])}</td>`;
+                    } else if (_self.isArray(row[el.key])) {
+                        content += `<td>${_self.build_row_content_array(row[el.key])}</td>`;
+
+                    } else {
+                        content += `<td>${row[el.key]}</td>`;
+                    }
+
                 });
                 content += `<td>${_self.build_table_col_action(row)}</td>`;
                 content += '</tr>';
@@ -185,6 +193,22 @@ class CollectionGenerator {
             content += `<tr><td colspan="${size}">No Data Found</td></tr>`;
         }
 
+        return content;
+    }
+
+    build_row_content_object(object) {
+        let content = '';
+        Object.keys(object).forEach( x  => {
+            content += `<p>${x} : ${object[x]}</p>`;
+        });
+        return content;
+    }
+
+    build_row_content_array(array) {
+        let content = '';
+        array.forEach( x => {
+            content += `<p>${x}</p>`;
+        });
         return content;
     }
 
@@ -235,6 +259,7 @@ class CollectionGenerator {
     set_up_modal() {
         $('#modal .modal-header').html(this.build_modal_header());
         $('#modal .modal-body').html(this.build_modal_content());
+        $('button.save-action').unbind();
 
         let _self = this;
         $('#modal').on('shown.bs.modal', function () {
@@ -247,16 +272,17 @@ class CollectionGenerator {
 
         $('button.save-action').click(function () {
             console.log($(this).data());
+
             let action = $(this).data('action');
-           
+
             let method = 'POST';
-            if(action == 'update'){
+            if (action == 'update') {
                 $('form input[name="_id"]').prop("disabled", false);
                 method = 'PUT';
             }
             let vals = _self.getFormData(jQuery('#modal form'));
 
-           _self.ajax_call(_self.url_base, vals, method, $('button.save-action'), (status, ret) => {
+            _self.ajax_call(_self.url_base, vals, method, $('button.save-action'), (status, ret) => {
                 if (status == 'success') {
                     $('form').trigger("reset");
                     _self.load_table();
@@ -264,15 +290,18 @@ class CollectionGenerator {
                     $('.modal').modal('hide');
                 }
             });
+
         });
+
     }
 
     handle_ui() {
         let _self = this;
 
-        $(`button.add-new[data-collection="${this.name}"]`).click(function () {
+        $(`button.add-new[data-collection="${_self.name}"]`).click(function () {
 
             $('#modal button.save-action').data('action', 'save');
+            $('#modal button.save-action').data('collection', _self.name);//TODO:take a look
             $('#modal').modal();
         });
 
@@ -347,7 +376,7 @@ class CollectionGenerator {
             console.log(_id);
             let target = jQuery(`table#${this.name.replace(' ', '_')}-table tbody`);
 
-            _self.ajax_call(_self.url_base + '/' + _id, _id, 'DELETE', target, (status, ret) => {
+            _self.ajax_call(_self.url_base + _id, _id, 'DELETE', target, (status, ret) => {
                 if (status == 'success') {
                     _self.load_table();
                 }
@@ -365,7 +394,7 @@ class CollectionGenerator {
             contentType: 'application/json',
             data: JSON.stringify(data),
             beforeSend: function (jqXHR, settings) {
-                jqXHR.setRequestHeader('collection_name', collection );
+                jqXHR.setRequestHeader('collection_name', collection);
                 jQuery(target).append('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>');
             },
             success: function (result, status, xhr) {
@@ -391,6 +420,14 @@ class CollectionGenerator {
         });
 
         return indexed_array;
+    }
+
+    isObject(value) {
+        return value && typeof value === 'object' && value.constructor === Object;
+    }
+
+    isArray(value) {
+        return value && typeof value === 'object' && value.constructor === Array;
     }
 
 }
