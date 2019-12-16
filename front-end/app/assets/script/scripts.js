@@ -65,6 +65,18 @@ function build_ui() {
 
     let karan_generator = new CollectionGenerator('Karanvir_C0747562', C0747562_collection_fields);
     karan_generator.handle_ui();
+    
+    //Gunraj Bedi...
+    let gunraj_collection_fields = [
+        new CollectionField('ID', '_id', 'text', false, 'disabled="disabled"'),
+        new CollectionField('Full Name', 'fullName', 'text', true),
+        new CollectionField('Date of Birth', 'dob', 'date', true),
+        new CollectionField('Gender', 'gender', 'radio', false, '', false, [{ name: 'Male', value: 'M' }, { name: 'Female', value: 'F' }]),
+        new CollectionField('Address', 'address', 'text', false)];
+
+    let gunraj_generator = new CollectionGenerator('GunrajBedi_C0742871', gunraj_collection_fields);
+    gunraj_generator.handle_ui();
+        
 }
 
 
