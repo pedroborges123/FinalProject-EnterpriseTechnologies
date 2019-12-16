@@ -34,6 +34,7 @@ function build_ui() {
     student_collection_generator.set_up_modal();// Only for the first on collection
     student_collection_generator.load_table();// Only for the first on collection
 
+    // TODO: Remove this...
     let cool_collection_fields = [
         new CollectionField('ID', '_id', 'text', false, 'disabled="disabled"'),
         new CollectionField('Name', 'Name', 'text', true),
@@ -43,6 +44,27 @@ function build_ui() {
     let cool_collection_generator = new CollectionGenerator('Cool_List', cool_collection_fields);
     cool_collection_generator.handle_ui();// For all collections
 
+    // Flavio Noe...
+    let flavio_collection_fields = [
+        new CollectionField('ID', '_id', 'text', false, 'disabled="disabled"'),
+        new CollectionField('Full Name', 'fullName', 'text', true),
+        new CollectionField('Date of Birth', 'dob', 'date', true),
+        new CollectionField('Gender', 'gender', 'radio', false, '', false, [{ name: 'Male', value: 'M' }, { name: 'Female', value: 'F' }]),
+        new CollectionField('Address', 'address', 'text', false)];
+
+    let flavio_generator = new CollectionGenerator('Flavio_C0740832', flavio_collection_fields);
+    flavio_generator.handle_ui();
+        
+    //Karanvir Banwait
+    let C0747562_collection_fields = [
+        new CollectionField('ID', '_id', 'text', false, 'disabled="disabled"'),
+        new CollectionField('Street Name', 'fullName', 'text', true),
+        new CollectionField('Length', 'length', 'text', true),
+        new CollectionField('Description', 'description', 'text',true)
+        ];
+
+    let karan_generator = new CollectionGenerator('Karanvir_C0747562', C0747562_collection_fields);
+    karan_generator.handle_ui();
 }
 
 
