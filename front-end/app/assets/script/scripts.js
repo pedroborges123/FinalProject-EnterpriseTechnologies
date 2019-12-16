@@ -35,7 +35,7 @@ function build_ui() {
     student_collection_generator.load_table();// Only for the first on collection
 
     // TODO: Remove this...
-    let cool_collection_fields = [
+    /*let cool_collection_fields = [
         new CollectionField('ID', '_id', 'text', false, 'disabled="disabled"'),
         new CollectionField('Name', 'Name', 'text', true),
         new CollectionField('Last Name', 'LastName', 'text', true),
@@ -43,6 +43,7 @@ function build_ui() {
 
     let cool_collection_generator = new CollectionGenerator('Cool_List', cool_collection_fields);
     cool_collection_generator.handle_ui();// For all collections
+*/
 
     // Flavio Noe...
     let flavio_collection_fields = [
