@@ -115,7 +115,7 @@ class CollectionGenerator {
         let content = `<div class="tab-pane fade show" id="${this.name.replace(' ', '_')}" role="tabpanel" aria-labelledby="${this.name.replace(' ', '_')}">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <h2>Students ${this.build_add_new()}</h2>
+                                    <h2>${this.name} ${this.build_add_new()}</h2>
                                     ${this.build_table()}
                                     ${this.build_add_new()}
                                 </div>
