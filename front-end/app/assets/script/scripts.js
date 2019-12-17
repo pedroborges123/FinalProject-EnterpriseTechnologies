@@ -11,14 +11,6 @@ jQuery(document).ready(function () {
 
 function build_ui() {
 
-    /*{"_id":"5ddd6f3bd2b0da2d347bc221",
-        "Name":"Leonidas",
-        "LastName":"Pereira",
-        "RegistrationDate":"11-09-2016",
-        "Co-op":"Y",
-        "GPA":3.2,
-        "GraduationDate":"20-04-2019"} */
-
     let student_collection_fields = [
         new CollectionField('ID', '_id', 'text', false, 'disabled="disabled"'),
         new CollectionField('Name', 'Name', 'text', true),
@@ -33,17 +25,6 @@ function build_ui() {
     student_collection_generator.handle_ui();// For all collections
     student_collection_generator.set_up_modal();// Only for the first on collection
     student_collection_generator.load_table();// Only for the first on collection
-
-    // TODO: Remove this...
-    /*let cool_collection_fields = [
-        new CollectionField('ID', '_id', 'text', false, 'disabled="disabled"'),
-        new CollectionField('Name', 'Name', 'text', true),
-        new CollectionField('Last Name', 'LastName', 'text', true),
-        new CollectionField('Rating', 'rating', 'number', true)];
-
-    let cool_collection_generator = new CollectionGenerator('Cool_List', cool_collection_fields);
-    cool_collection_generator.handle_ui();// For all collections
-*/
 
     // Flavio Noe...
     let flavio_collection_fields = [
@@ -70,10 +51,10 @@ function build_ui() {
     //Gunraj Bedi...
     let gunraj_collection_fields = [
         new CollectionField('ID', '_id', 'text', false, 'disabled="disabled"'),
-        new CollectionField('Full Name', 'fullName', 'text', true),
-        new CollectionField('Date of Birth', 'dob', 'date', true),
-        new CollectionField('Gender', 'gender', 'radio', false, '', false, [{ name: 'Male', value: 'M' }, { name: 'Female', value: 'F' }]),
-        new CollectionField('Address', 'address', 'text', false)];
+        new CollectionField('Instructor Name', 'fullName', 'text', true),
+        new CollectionField('Department', 'division', 'text', true),
+        new CollectionField('Divion', 'class','text', true ),
+        new CollectionField('Course', 'course', 'text', true)];
 
     let gunraj_generator = new CollectionGenerator('GunrajBedi_C0742871', gunraj_collection_fields);
     gunraj_generator.handle_ui();
