@@ -7,7 +7,7 @@ body{
   margin: auto;
   padding: 10px;
   background-color: #fff;
-  height: calc(100vh - 100px);
+  min-height: calc(100vh - 100px);
 }
 
 .dimmer {
