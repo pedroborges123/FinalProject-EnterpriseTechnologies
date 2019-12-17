@@ -29,7 +29,7 @@ function build_ui() {
         new CollectionField("Graduation Date", 'GraduationDate', 'date', false)
     ];
 
-    let student_collection_generator = new CollectionGenerator('Cestar_C0740134', student_collection_fields);
+    let student_collection_generator = new CollectionGenerator('Pedro_C0740134', student_collection_fields);
     student_collection_generator.handle_ui();// For all collections
     student_collection_generator.set_up_modal();// Only for the first on collection
     student_collection_generator.load_table();// Only for the first on collection
