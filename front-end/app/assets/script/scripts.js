@@ -51,10 +51,10 @@ function build_ui() {
     //Gunraj Bedi...
     let gunraj_collection_fields = [
         new CollectionField('ID', '_id', 'text', false, 'disabled="disabled"'),
-        new CollectionField('Full Name', 'fullName', 'text', true),
-        new CollectionField('Date of Birth', 'dob', 'date', true),
-        new CollectionField('Gender', 'gender', 'radio', false, '', false, [{ name: 'Male', value: 'M' }, { name: 'Female', value: 'F' }]),
-        new CollectionField('Address', 'address', 'text', false)];
+        new CollectionField('Instructor Name', 'fullName', 'text', true),
+        new CollectionField('Department', 'division', 'text', true),
+        new CollectionField('Divion', 'class','text', true ),
+        new CollectionField('Course', 'course', 'text', true)];
 
     let gunraj_generator = new CollectionGenerator('GunrajBedi_C0742871', gunraj_collection_fields);
     gunraj_generator.handle_ui();
